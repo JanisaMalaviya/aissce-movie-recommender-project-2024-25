@@ -39,7 +39,7 @@ dg_stack.set(get_default_dg_stack())
         # we want to count as a script completion so triggers reset.
         # It is also possible for this to happen if fast reruns is off,
         # but this is very rare.
-        premature_stop = False
+premature_stop = False
 except StopException:
         # This is thrown when the script executes `st.stop()`.
         # We don't have to do anything here.
