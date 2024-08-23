@@ -40,15 +40,14 @@ dg_stack.set(get_default_dg_stack())
         # It is also possible for this to happen if fast reruns is off,
         # but this is very rare.
 premature_stop = False
-
- except StopException:
+except StopException:
         # This is thrown when the script executes `st.stop()`.
         # We don't have to do anything here.
         premature_stop = True
- except FragmentHandledException:
+except FragmentHandledException:
         run_without_errors = False
         premature_stop = True
- except Exception as ex:
+except Exception as ex:
         run_without_errors = False
         premature_stop = True
         handle_uncaught_app_exception(ex)
