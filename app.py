@@ -5,7 +5,7 @@ st.header("Movie Recommendation System using Machine Learning")
 st.subheader("Legal Adherence: This website uses TMDB datasets but is not endorsed, certified, or otherwise approved by TMDB.")
  # Avoid circular imports
 from streamlit.delta_generator import dg_stack, get_default_dg_stack
-     run_without_errors = True
+run_without_errors = True
 
     # This will be set to a RerunData instance if our execution
     # is interrupted by a RerunException.
