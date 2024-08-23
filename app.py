@@ -9,21 +9,21 @@ run_without_errors = True
 
     # This will be set to a RerunData instance if our execution
     # is interrupted by a RerunException.
-    rerun_exception_data: RerunData | None = None
+rerun_exception_data: RerunData | None = None
 
     # If the script stops early, we don't want to remove unseen widgets,
     # so we track this to potentially skip session state cleanup later.
-    premature_stop: bool = False
+premature_stop: bool = False
 
     # The result of the passed function
-    result: Any | None = None
+result: Any | None = None
 
     # The uncaught exception if one occurred, None otherwise
-    uncaught_exception: Exception | None = None
+uncaught_exception: Exception | None = None
 
-    try:
-        result = func()
-    except RerunException as e:
+try:
+    result = func()
+except RerunException as e:
         rerun_exception_data = e.rerun_data
 
         # Since the script is about to rerun, we may need to reset our cursors/dg_stack
@@ -32,29 +32,29 @@ run_without_errors = True
         # would automatically come with fresh cursors/dg_stack values). For fragments,
         # it doesn't matter either way since the fragment resets these values from its
         # snapshot before execution.
-        ctx.cursors.clear()
-        dg_stack.set(get_default_dg_stack())
+ctx.cursors.clear()
+dg_stack.set(get_default_dg_stack())
 
         # Interruption due to a rerun is usually from `st.rerun()`, which
         # we want to count as a script completion so triggers reset.
         # It is also possible for this to happen if fast reruns is off,
         # but this is very rare.
-        premature_stop = False
+premature_stop = False
 
-    except StopException:
+except StopException:
         # This is thrown when the script executes `st.stop()`.
         # We don't have to do anything here.
         premature_stop = True
-    except FragmentHandledException:
+except FragmentHandledException:
         run_without_errors = False
         premature_stop = True
-    except Exception as ex:
+except Exception as ex:
         run_without_errors = False
         premature_stop = True
         handle_uncaught_app_exception(ex)
         uncaught_exception = ex
 
-    return (
+return (
         result,
         run_without_errors,
         rerun_exception_data,
