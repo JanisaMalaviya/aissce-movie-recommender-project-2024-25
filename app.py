@@ -54,13 +54,7 @@ except Exception as ex:
         handle_uncaught_app_exception(ex)
         uncaught_exception = ex
 
- return (
-        result,
-        run_without_errors,
-        rerun_exception_data,
-        premature_stop,
-        uncaught_exception,
-    )
+ return(result, run_without_errors, rerun_exception_data, premature_stop, uncaught_exception,)
 
 movies= pickle.load(open("artifacts\movie_list.pkl","rb" ))
 similarity= pickle.load(open("artifacts\similarity.pkl","rb"))
