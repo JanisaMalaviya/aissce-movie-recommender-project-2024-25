@@ -54,7 +54,7 @@ except Exception as ex:
         handle_uncaught_app_exception(ex)
         uncaught_exception = ex
 
-return (
+ return (
         result,
         run_without_errors,
         rerun_exception_data,
